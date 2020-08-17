@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>音乐播放器</title>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script type="text/javascript"></script>
+    <style type="text/css">
+        #maxVolume{
+            padding: 0px;
+            margin:0px;
+            width: 100px;
+            height:20px;
+        }
+        #currentVolume{
+            width:60%
+        }
+    </style>
+</head>
+<body>
+    <audio controls="controls">
+        <source src="博客.wav">
+    </audio>
+    <button id="audioStart" class="btn btn-default">播放</button>
+    <button id="audioStop" class="btn btn-info">暂停</button>
+    <button id="audioQuiet" class="btn btn-info">静音</button>
+    <div id="maxVolume" class="progress">
+        <div id="currentVolume" class="progress-bar"></div>
+    </div>
+
+    
+    
+    <script type="text/javascript">
+    var audio = $('audio')[0];
+        $('#audioStart').on('click',function(){
+            $('audio')[0].play();
+            console.log(audio.currentTime);
+            console.log(audio.duration);
+        });
+        $('#audioStop').on('click',function(){
+            $('audio')[0].pause();
+        });
+        $('#audioQuiet').on('click',function(){
+            
+            var aMu = audio.muted;
+            if(aMu) audio.muted = false;
+            if(!aMu) audio.muted = true;
+        });
+        $('#currentVolume').on('click',function(){
+            
+        })
+        var timer = setInterval(() => {
+            console.log(audio.currentTime);
+            console.log(audio.duration);
+            var a = audio.currentTime/audio.duration*100 + '%';
+            $('#currentVolume').css('width',a);
+        }, 1000);
+        $('#maxVolume').on('click',function(event){
+            var maxWidth = 100; 
+            audio.currentTime = event.offsetX/100 * audio.duration;
+            console.log(event.offsetX);
+            
+        })
+    </script>
+</body>
+</html>
