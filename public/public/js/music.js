@@ -19,7 +19,7 @@ var isFm = 0;
 var lyric = [];
 
 $.ajax({
-    url:'http://simonwann.vipgz1.idcfengye.com/login/status',
+    url:'http://suzzs.top:3100/login/status',
     success:function(){
         isLogin = true;
     },
@@ -81,7 +81,7 @@ setInterval(() => {
     audio.src = listUrl[playIndex];
     console.log("url = "+audio.src);
     $.ajax({
-        url:'http://simonwann.vipgz1.idcfengye.com/song/detail',
+        url:'http://suzzs.top:3100/song/detail',
         data:{
             ids:playList[playIndex].id
         },
@@ -128,7 +128,7 @@ $('#signInBtn').on('click',function(){
     // $('#')
     $.ajax({
         type:'post',
-        url:'http://simonwann.vipgz1.idcfengye.com/login/cellphone',
+        url:'http://suzzs.top:3100/login/cellphone',
         data:{
             phone:phone,
             password:password
@@ -143,7 +143,7 @@ $('#signInBtn').on('click',function(){
                 account = data.account;
                 profile = data.profile;
                 $.ajax({
-                    url:'http://simonwann.vipgz1.idcfengye.com/likelist',
+                    url:'http://suzzs.top:3100/likelist',
                     data:{
                         uid:data.account.id
                     },
@@ -163,7 +163,7 @@ $('#signInBtn').on('click',function(){
                 $('#songList').fadeToggle('fast');
 
                 $.ajax({
-                    url:'http://simonwann.vipgz1.idcfengye.com/user/playlist',
+                    url:'http://suzzs.top:3100/user/playlist',
                     data:{
                         uid:account.id
                     },
@@ -204,7 +204,7 @@ $('#submit').on('click',function(){
     date = date.getTime();
     $.ajax({
         type:'get',
-        url:'http://simonwann.vipgz1.idcfengye.com/search',
+        url:'http://suzzs.top:3100/search',
         data:{
             keywords:keywords,
             limit:20,
@@ -221,7 +221,7 @@ $('#submit').on('click',function(){
                 // result.songs[index].ar = result.songs[index].artists.concat();
                 //获取歌曲封面
                 $.ajax({
-                    url:'http://simonwann.vipgz1.idcfengye.com/song/detail',
+                    url:'http://suzzs.top:3100/song/detail',
                     data:{
                         ids:result.songs[index].id
                     },
@@ -315,7 +315,7 @@ $('#forward').on('click',function(){
 $('#favoriteH').on('click',function(){
     var songId = playList[currentIndex].id
     $.ajax({
-        url:'http://simonwann.vipgz1.idcfengye.com/like',
+        url:'http://suzzs.top:3100/like',
         data:{
             id:songId,
             like:true
@@ -330,7 +330,7 @@ $('#commm').on('click',function(){
     $('#personalFm').fadeOut('fast');
     songId = playList[playIndex].id;
     $.ajax({
-        url:'http://simonwann.vipgz1.idcfengye.com/comment/music',
+        url:'http://suzzs.top:3100/comment/music',
         data:{
             id:songId
         },
@@ -344,7 +344,7 @@ $('#commm').on('click',function(){
             currentComments = data;
             for(var i=0;i<currentComments.hotComments.length;i++)
             $.ajax({
-               url:'http://simonwann.vipgz1.idcfengye.com/user/detail' ,
+               url:'http://suzzs.top:3100/user/detail' ,
                data:{
                 uid:currentComments.hotComments[i].commentId
                },
@@ -375,7 +375,7 @@ $('#songList div').on('click','a',function(){
     console.log($(this).index());
     songListIndex = $(this).index();
     $.ajax({
-        url:'http://simonwann.vipgz1.idcfengye.com/playlist/detail',
+        url:'http://suzzs.top:3100/playlist/detail',
         data:{
             id:collectList[songListIndex].id
         },
@@ -390,7 +390,7 @@ $('#songList div').on('click','a',function(){
             }
             
             $.ajax({
-                url:'http://simonwann.vipgz1.idcfengye.com/song/detail',
+                url:'http://suzzs.top:3100/song/detail',
                 data:{
                     ids:playlistId.toString()
                 },
@@ -403,7 +403,7 @@ $('#songList div').on('click','a',function(){
                     $('#songListName tbody').append(html4);
                     for(var i = 0;i<playlistId.length;i++){
                         $.ajax({
-                            url:'http://simonwann.vipgz1.idcfengye.com/song/url',
+                            url:'http://suzzs.top:3100/song/url',
                             data:{
                                 id:playlistId[i]
                             },
@@ -447,7 +447,7 @@ $('#dailyList a').on('click',function(){
     listUrl.splice(0,playlistId.length);
     playlistId.splice(0,playlistId.length);
     $.ajax({
-        url:'http://simonwann.vipgz1.idcfengye.com/recommend/songs',
+        url:'http://suzzs.top:3100/recommend/songs',
         success:function(data){
             isFm = 0;
             $('#songList2').fadeIn('fast');
@@ -464,7 +464,7 @@ $('#dailyList a').on('click',function(){
             $('#songListName tbody').append(html6);
             for(var i = 0;i<playlistId.length;i++){
                 $.ajax({
-                    url:'http://simonwann.vipgz1.idcfengye.com/song/url',
+                    url:'http://suzzs.top:3100/song/url',
                     data:{
                         id:playlistId[i]
                     },
@@ -504,7 +504,7 @@ $('#comment #lrc').on('click',function(){
     $('#personalFm').fadeIn('fast');
     
     $.ajax({
-        url:'http://simonwann.vipgz1.idcfengye.com/lyric',
+        url:'http://suzzs.top:3100/lyric',
         data:{
             id:playList[playIndex].id
         },
@@ -526,7 +526,7 @@ $('#comment #lrc').on('click',function(){
 
 function personalFm(){
     $.ajax({
-        url:'http://simonwann.vipgz1.idcfengye.com/personal_fm',
+        url:'http://suzzs.top:3100/personal_fm',
         success:function(data){
             $('#commentArea,#songList2,#search').fadeOut('fast');
             console.log(data);
@@ -546,7 +546,7 @@ function personalFm(){
             console.log(ids.toString());
             
             $.ajax({
-                url:'http://simonwann.vipgz1.idcfengye.com/song/url',
+                url:'http://suzzs.top:3100/song/url',
                 data:{
                     id:ids.toString()
                 },
@@ -565,7 +565,7 @@ function personalFm(){
                     $('#personalFm h3').html(playList[playIndex].name);
                     $('#personalFm p').html(playList[playIndex].ar[0].name);
                     $.ajax({
-                        url:'http://simonwann.vipgz1.idcfengye.com/lyric',
+                        url:'http://suzzs.top:3100/lyric',
                         data:{
                             id:playList[playIndex].id
                         },
@@ -588,7 +588,7 @@ function personalFm(){
 
 function lyricChange(){
     $.ajax({
-        url:'http://simonwann.vipgz1.idcfengye.com/lyric',
+        url:'http://suzzs.top:3100/lyric',
         data:{
             id:playList[playIndex].id
         },
@@ -604,7 +604,7 @@ function lyricChange(){
 
 function urlGet( callback ){
     $.ajax({
-        url:'http://simonwann.vipgz1.idcfengye.com/song/url',
+        url:'http://suzzs.top:3100/song/url',
         data:{
             id:ids.toString()
         },
